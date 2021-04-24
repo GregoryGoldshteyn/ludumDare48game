@@ -1,8 +1,15 @@
 config = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 832,
     height: 600,
     parent: 'game-div',
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: {y:0},
+            debug: false
+        }
+    },
     scene: {
         preload: preload,
         create: create,
@@ -10,8 +17,8 @@ config = {
     }
 };
 
-const tileHeight = 32;
-const tileWidth = 32;
+const tileHeight = 64;
+const tileWidth = 64;
 
 // Keyboard things
 var downKey;
@@ -21,11 +28,12 @@ var map;
 var text;
 var sy = 0;
 var score = 0;
-var mapWidth = 25;
-var mapHeight = 20;
+var mapWidth = 13;
+var mapHeight = 11;
 var distance = 0;
 var fallSpeed = 4;
 
+var spider;
 
 var outsidetileprobs = [6,6,7,7,7,7,8,9,9,9,9];
 for(i = 0; i < 3000; i += 1){
@@ -40,8 +48,9 @@ var insidetileprobs = [3,4];
 var game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('tiles', 'assets/img/StoneTileSet1.png');
+    this.load.image('tiles', 'assets/img/StoneTileSet2.png');
     this.load.bitmapFont('nokia16', 'assets/fonts/nokia16.png', 'assets/fonts/nokia16.xml');
+    this.load.spritesheet('spider', 'assets/img/Spider.png', { frameWidth: tileWidth, frameHeight: tileHeight});
 }
 
 function create() {
@@ -54,17 +63,35 @@ function create() {
 
     initMapData(mapData);
 
-    map = this.make.tilemap({ data: mapData, tileWidth: 32, tileHeight: 32 });
+    map = this.make.tilemap({ data: mapData, tileWidth: tileWidth, tileHeight: tileHeight });
 
     var tileset = map.addTilesetImage('tiles');
     var layer = map.createLayer(0, tileset, 0, 0);
 
     text = this.add.bitmapText(16, 8, 'nokia16').setScrollFactor(0);
+
+    spider = this.physics.add.sprite(400,400,'spider');
+
+    spider.setScrollFactor(0);
+
+    this.anims.create({
+        key: 'spiderWalk',
+        frames: this.anims.generateFrameNumbers('spider', { start: 0, end: 2 }),
+        frameRate: 10,
+        repeat: -1
+    });
+    this.anims.create({
+        key: 'spiderAttack',
+        frames: this.anims.generateFrameNumbers('spider', { start: 3, end: 6 }),
+        frameRate: 10,
+        repeat: -1
+    });
 }
 
 function update(time, delta) {
     handleKeyInputs();
     scrollMap();
+    spider.anims.play('spiderWalk', true)
 }
 
 function initKeyboard(){
@@ -110,7 +137,7 @@ function scrollMap()
     text.setText("Fall Speed: " + Math.floor(fallSpeed));
 
     // Every tileHeight, delete the tile from the top of the screen and generate a new one at the bottom
-    if (sy >= 32) {
+    if (sy >= tileHeight) {
         var tile;
         var prev;
 
@@ -139,16 +166,16 @@ function scrollMap()
 }
 
 function generateTileForRow(x){
-    if(x < 5 || x >= 20){
+    if(x < 2 || x > 10){
         return Phaser.Math.RND.weightedPick(outsidetileprobs);
     }
-    if(x > 5 && x < 19) {
+    if(x > 2 && x < 10) {
         return Phaser.Math.RND.weightedPick(insidetileprobs);
     }
-    if(x == 5){
+    if(x == 2){
         return 2;
     }
-    if(x == 19){
+    if(x == 10){
         return 5;
     }
     return 0;
