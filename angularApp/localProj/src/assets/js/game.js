@@ -28,6 +28,7 @@ class MainGameScene extends Phaser.Scene
     mapHeight = 11;
     distance = 0;
     fallSpeed = 4;
+    depth = 0;
 
     lightMaskGraphics = {};
     lightMaskList = [];
@@ -38,6 +39,7 @@ class MainGameScene extends Phaser.Scene
     spider;
     wizard;
     reticle;
+    playerMissiles;
 
     missileParticles;
 
@@ -61,7 +63,9 @@ class MainGameScene extends Phaser.Scene
         this.load.image('tiles', 'assets/img/StoneTileSet2.png');
         this.load.bitmapFont('nokia16', 'assets/fonts/nokia16.png', 'assets/fonts/nokia16.xml');
         this.load.spritesheet('spider', 'assets/img/Spider.png', { frameWidth: this.tileWidth, frameHeight: this.tileHeight});
+        this.load.spritesheet('bat', 'assets/img/Bat1.png', { frameWidth: this.tileWidth, frameHeight: this.tileHeight });
         this.load.spritesheet('wizard', 'assets/img/Wizard.png', { frameWidth: this.tileWidth, frameHeight: this.tileHeight });
+        this.load.spritesheet('missile', 'assets/img/Missile.png', { frameWidth: 32, frameHeight: 32 });
         
         this.load.image('reticle', 'assets/img/Reticle.png');
         this.load.image('blankScreen', 'assets/img/BlackScreen.png');
@@ -78,7 +82,7 @@ class MainGameScene extends Phaser.Scene
         this.createPlayer();
         this.createOccluder();
 
-        this.addToLightMaskObjects(this.wizard, 'large');
+        this.addToLightMaskObject(this.wizard, 'large');
     }
 
     update(time, delta) {
@@ -88,10 +92,60 @@ class MainGameScene extends Phaser.Scene
         //wizard.anims.play('wizardFall', true);
     }
 
+    Missile = new Phaser.Class({
+        Extends: Phaser.GameObjects.Sprite,
+
+        initialize:
+        function Missile(scene) {
+            Phaser.GameObjects.Sprite.call(this, scene, 0, 0, 'missile');
+            this.anims.play('missile', true);
+            this.setScrollFactor(0);
+            this.speed = 0.3;
+            this.direction = 0;
+            this.xSpeed = 0;
+            this.ySpeed = 0;
+            this.setSize(16, 16, true);
+            scene.addToLightMaskObject(this, 'mid');
+        },
+
+        fire: function (shooter, target) {
+            this.setPosition(shooter.x, shooter.y);
+            this.direction = Math.atan((target.x - this.x) / (target.y - this.y));
+
+            if (target.y >= this.y) {
+                this.xSpeed = this.speed * Math.sin(this.direction);
+                this.ySpeed = this.speed * Math.cos(this.direction);
+            }
+            else {
+                this.xSpeed = -this.speed * Math.sin(this.direction);
+                this.ySpeed = -this.speed * Math.cos(this.direction);
+            }
+        },
+
+        // Updates the position of the bullet each cycle
+        update: function (time, delta) {
+            this.x += this.xSpeed * delta;
+            this.y += this.ySpeed * delta;
+            if (this.x < -100 || this.y < -100 || this.x > screenWidth + 100 || this.y > screenWidth + 100){
+                this.setActive(false);
+                this.setVisible(false);
+            }
+        }
+    });
+
+    Enemy = new Phaser.Class({
+        Extends: Phaser.GameObjects.Sprite,
+        
+        initialize:
+        function Enemy(scene, enemyType) {
+            
+        }
+    });
+
     createOccluder(){
         this.lightMaskGraphics = new Phaser.GameObjects.Graphics(this);
         this.blankScreen = this.add.image(screenWidth / 2, screenHeight / 2, 'blankScreen');
-        this.blankScreen.alpha = 0.5;
+        this.blankScreen.alpha = 1.0;
 
         this.blankScreen.setScrollFactor(0);
         this.blankScreen.setDepth(occluderDepth);
@@ -127,17 +181,30 @@ class MainGameScene extends Phaser.Scene
         this.canAttack = true;
         this.wizard = this.physics.add.sprite(416, 300, 'wizard');
         this.wizard.setScrollFactor(0);
+
+        this.playerMissiles = this.physics.add.group({classType: this.Missile, runChildUpdate: true});
     }
 
     createMouseLogic(){
         // Attacking logic
-        this.input.on('pointerdown', function f(pointer) {
+        this.input.on('pointerdown', function f(pointer, time, lastFired) {
             if (!this.scene.game.input.mouse.locked) {
                 this.scene.game.input.mouse.requestPointerLock();
             }
             if (this.scene.canAttack === true) {
                 this.scene.wizard.anims.play('wizardAttack', true);
             }
+
+            console.log(time);
+            console.log(lastFired);
+
+            var missile = this.scene.playerMissiles.get().setActive(true).setVisible(true);
+            this.scene.addToLightMaskObject(missile, 'mid');
+
+            if(missile){
+                missile.fire(this.scene.wizard, this.scene.reticle);
+            }
+
         }, { 'scene': this });
 
         this.input.on('pointermove', function (pointer) {
@@ -199,9 +266,21 @@ class MainGameScene extends Phaser.Scene
             yoyo: true,
             repeat: 0
         });
+        this.anims.create({
+            key: 'batFly',
+            frames: this.anims.generateFrameNumbers('bat', {start: 0, end: 2}),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'missile',
+            frames: this.anims.generateFrameNumbers('missile', {start : 0, end : 2}),
+            frameRate: 10,
+            repeat: -1
+        });
     }
 
-    addToLightMaskObjects(obj, size){
+    addToLightMaskObject(obj, size){
         this.lightMaskList.push([obj, size])
     }
 
@@ -212,6 +291,12 @@ class MainGameScene extends Phaser.Scene
         for(var i = 0; i < this.lightMaskList.length; i += 1){
             // If the gameobject no longer exists, remove it from lights
             if(this.lightMaskList[i][0] == undefined){
+                this.lightMaskList.splice(i, 1);
+                continue;
+            }
+
+            // If the gameobject no longer exists, remove it from lights
+            if (!this.lightMaskList[i][0].active){
                 this.lightMaskList.splice(i, 1);
                 continue;
             }
@@ -344,11 +429,49 @@ class MainGameScene extends Phaser.Scene
         }
     }
 
+    // Every 100 depth, decrease opacity by 10%
+    handleOpacity(){
+        // NOP if depth is really high
+        if(this.depth > 1005){
+            return;
+        }
+        if(this.depth > 95 && this.depth <= 105){
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 195 && this.depth <= 205) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 295 && this.depth <= 305) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 395 && this.depth <= 405) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 495 && this.depth <= 505) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 595 && this.depth <= 605) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 695 && this.depth <= 705) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 795 && this.depth <= 805) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 895 && this.depth <= 905) {
+            this.blankScreen.alpha += 0.01;
+        }
+        if (this.depth > 995 && this.depth <= 1005) {
+            this.blankScreen.alpha += 0.01;
+        }
+    }
+
     scrollMap()
     {
         this.sy += Math.floor(this.fallSpeed);
 
-        this.text.setText("Fall Speed: " + Math.floor(this.fallSpeed));
+        this.text.setText("Score: " + Math.floor(this.score));
 
         // Every tileHeight, delete the tile from the top of the screen and generate a new one at the bottom
         if (this.sy >= this.tileHeight) {
@@ -371,7 +494,9 @@ class MainGameScene extends Phaser.Scene
 
             this.score += 1;
 
-            //text.setText("Score: " + score);
+            this.depth += 1;
+
+            this.handleOpacity();
 
             this.sy = 0;
         }
