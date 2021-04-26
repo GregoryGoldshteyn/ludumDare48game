@@ -1,0 +1,1922 @@
+{
+    "10": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "17": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "21": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "24": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "32": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "39": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "41": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "43": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "46": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "48": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "54": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "58": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "65": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "69": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "74": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "78": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "84": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "90": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "98": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "101": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "103": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "106": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "108": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "111": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "114": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "122": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "129": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "137": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "143": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "145": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "153": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "160": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "167": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "175": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "180": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "185": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "192": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "200": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "208": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "214": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "220": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "223": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "228": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "235": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "237": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "243": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "245": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "247": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "254": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "260": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "262": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "265": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "268": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "273": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "280": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "285": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "290": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "295": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "298": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "302": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "307": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "314": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "320": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "327": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "332": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "334": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "336": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "344": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "347": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "352": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "359": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "362": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "364": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "372": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "374": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "380": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "382": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "389": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "397": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "400": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "405": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "412": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "418": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "425": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "430": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "434": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "437": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "445": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "449": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "452": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "454": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "457": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "460": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "464": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "469": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "473": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "478": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "484": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "488": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "490": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "494": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "501": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "506": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "513": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "520": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "522": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "529": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "531": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "537": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "545": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "549": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "553": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "557": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "560": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "568": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "570": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "575": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "578": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "580": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "585": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "592": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "600": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "603": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "609": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "614": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "619": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "623": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "631": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "633": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "637": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "639": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "645": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "647": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "652": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "656": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "664": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "669": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "677": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "683": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "687": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "695": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "703": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "710": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "714": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "719": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "725": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "729": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "736": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "742": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "745": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "748": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 0
+        }
+    ],
+    "752": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "755": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "758": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "760": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "766": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "773": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "781": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "785": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "787": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "795": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "802": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "805": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "808": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "815": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "818": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "825": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "827": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "829": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "834": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "836": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "844": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "846": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "849": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "853": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "857": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "859": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "862": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "867": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "869": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "874": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "880": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "887": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "891": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "897": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "903": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "908": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "913": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "916": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "920": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "926": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "931": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "935": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "943": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "951": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "957": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "962": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "967": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "971": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 3
+        }
+    ],
+    "974": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "981": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "985": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "990": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "998": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "1002": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "1010": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "1015": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "1023": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "1026": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "1029": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "1033": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "1037": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "1040": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "1046": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "1053": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "1056": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "1064": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "1070": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "1077": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "1081": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 1
+        }
+    ],
+    "1085": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 6
+        }
+    ],
+    "1088": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "1092": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 5
+        }
+    ],
+    "1098": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "1104": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "1112": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "1120": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 1
+        }
+    ],
+    "1125": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 6
+        }
+    ],
+    "1129": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "1137": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 0
+        }
+    ],
+    "1144": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ],
+    "1148": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "1156": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "topToBottomWaves",
+            "pathNum": 2
+        }
+    ],
+    "1161": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 4
+        }
+    ],
+    "1166": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "1174": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "1180": [
+        {
+            "type": "spider",
+            "flip": true,
+            "path": "topToBottomWaves",
+            "pathNum": 5
+        }
+    ],
+    "1187": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 4
+        }
+    ],
+    "1192": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 2
+        }
+    ],
+    "1199": [
+        {
+            "type": "bat",
+            "flip": false,
+            "path": "bottomToTopWaves",
+            "pathNum": 3
+        }
+    ]
+}

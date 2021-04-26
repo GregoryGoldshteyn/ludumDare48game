@@ -1,14 +1,78 @@
 const screenWidth = 832;
 const screenHeight = 600;
 
+const tileHeight = 64;
+const tileWidth = 64;
+
 const UIDepth = 2;
 const occluderDepth = 1;
 
+const pathDuration = 10000;
+
+const _DEBUG = false;
+
+class StartScene extends Phaser.Scene{
+    constructor(){
+        super("StartScene");
+    }
+    init(data){
+
+    }
+    preload(){
+
+    }
+    create(){
+
+    }
+    update(){
+
+    }
+}
+
+class GameOverScene extends Phaser.Scene {
+    constructor() {
+        super("GameOverScene");
+    }
+    init(data) {
+        this.score = data.score;
+    }
+    preload() {
+
+    }
+    create() {
+        this.loseSound = this.sound.add('lose');
+        this.loseSound.play();
+        this.text = this.add.bitmapText(16, 8, 'nokia16').setScrollFactor(0);
+        this.text.setText("GAME OVER\n\n\nYour score was: " + this.score + "\n\n\n Press F5 to restart");
+    }
+    update() {
+
+    }
+}
+
+class VictoryScene extends Phaser.Scene {
+    constructor() {
+        super("VictoryScene");
+    }
+    init(data) {
+        this.score = data.score;
+    }
+    preload() {
+
+    }
+    create() {
+        this.winSound = this.sound.add('win');
+        this.winSound.play();
+        this.text = this.add.bitmapText(16, 8, 'nokia16').setScrollFactor(0);
+        this.text.setText("YOU WIN!!!!!!!!!!!!!\n\n\nYour score was: " + this.score + "\n\n\n Press F5 to restart");
+    }
+    update() {
+
+    }
+}
+
 class MainGameScene extends Phaser.Scene
 {
-    tileHeight = 64;
-    tileWidth = 64;
-
     downKey;
     upKey;
 
@@ -33,22 +97,30 @@ class MainGameScene extends Phaser.Scene
     lightMaskGraphics = {};
     lightMaskList = [];
 
+    paths = {};
+
     maskScreen;
     blankScreen;
+
+    hearts = [];
+
+    startIFrames = 0;
+    endIFrames = 0;
+    invincibleDuration = 2000;
+    globalTime = 0;
 
     spider;
     wizard;
     reticle;
     playerMissiles;
-
-    missileParticles;
+    enemyGroup;
 
     outsidetileprobs = [6,6,7,7,7,7,8,9,9,9,9];
     insidetileprobs = [3,4];
 
     constructor()
     {
-        super();
+        super("MainGameScene");
 
         // Make it several thousands times more likely to get regular stones over gems
         for (var i = 0; i < 3000; i += 1) {
@@ -62,34 +134,72 @@ class MainGameScene extends Phaser.Scene
     preload() {
         this.load.image('tiles', 'assets/img/StoneTileSet2.png');
         this.load.bitmapFont('nokia16', 'assets/fonts/nokia16.png', 'assets/fonts/nokia16.xml');
-        this.load.spritesheet('spider', 'assets/img/Spider.png', { frameWidth: this.tileWidth, frameHeight: this.tileHeight});
-        this.load.spritesheet('bat', 'assets/img/Bat1.png', { frameWidth: this.tileWidth, frameHeight: this.tileHeight });
-        this.load.spritesheet('wizard', 'assets/img/Wizard.png', { frameWidth: this.tileWidth, frameHeight: this.tileHeight });
+        this.load.spritesheet('spider', 'assets/img/Spider.png', { frameWidth: tileWidth, frameHeight: tileHeight});
+        this.load.spritesheet('bat', 'assets/img/Bat1.png', { frameWidth: tileWidth, frameHeight: tileHeight });
+        this.load.spritesheet('wizard', 'assets/img/Wizard.png', { frameWidth: tileWidth, frameHeight: tileHeight });
         this.load.spritesheet('missile', 'assets/img/Missile.png', { frameWidth: 32, frameHeight: 32 });
+        this.load.spritesheet('heart', 'assets/img/Heart.png', { frameWidth: 32, frameHeight: 32 });
         
         this.load.image('reticle', 'assets/img/Reticle.png');
         this.load.image('blankScreen', 'assets/img/BlackScreen.png');
+
+        this.load.json('enemies', 'assets/json/enemies.json');
+
+        this.load.audio('theme', 'assets/music/theme.wav');
+
+        this.load.audio('bang', 'assets/sfx/bang.wav');
+        this.load.audio('lose', 'assets/sfx/lose.wav');
+        this.load.audio('win', 'assets/sfx/win.wav');
+        this.load.audio('hurt', 'assets/sfx/hurt.wav');
     }
 
     create() {
         this.downKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.rightKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.leftKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
 
         this.createBackground();
-        this.createUI();
-        this.createMouseLogic();
         this.createAnimations();
         this.createPlayer();
+        this.createUI();
         this.createOccluder();
+        this.createPaths();
+        this.createEnemies();
+
+        this.createColliders();
+        this.createMouseLogic();
 
         this.addToLightMaskObject(this.wizard, 'large');
+
+        this.enemyJson = this.cache.json.get('enemies');
+
+        this.themeSound = this.sound.add('theme');
+        this.themeSound.loop = true;
+        this.themeSound.play();
+
+        this.hurtSound = this.sound.add('hurt');
+        this.winSound = this.sound.add('win');
+        this.loseSound = this.sound.add('lose');
+        this.bangSound = this.sound.add('bang');
+        this.bangSound.volume = 0.5;
     }
 
     update(time, delta) {
         this.handleKeyInputs();
         this.scrollMap();
         this.handleCreateLightMask();
-        //wizard.anims.play('wizardFall', true);
+        this.constrainReticle();
+        this.handleOnHurt(time);
+        this.handleWin();
+    }
+
+    createColliders(){
+        // Collider between enemies and player
+        this.collider1 = this.physics.add.collider(this.enemyGroup, this.wizard, this.playerHitCallback);
+
+        // Collider between missiles and enemies
+        this.collider2 = this.physics.add.collider(this.enemyGroup, this.playerMissiles, this.enemyHitCallback);
     }
 
     Missile = new Phaser.Class({
@@ -104,8 +214,9 @@ class MainGameScene extends Phaser.Scene
             this.direction = 0;
             this.xSpeed = 0;
             this.ySpeed = 0;
-            this.setSize(16, 16, true);
-            scene.addToLightMaskObject(this, 'mid');
+            //this.setSize(32, 32, true);
+            //scene.addToLightMaskObject(this, 'mid');
+
         },
 
         fire: function (shooter, target) {
@@ -134,18 +245,38 @@ class MainGameScene extends Phaser.Scene
     });
 
     Enemy = new Phaser.Class({
-        Extends: Phaser.GameObjects.Sprite,
+        Extends: Phaser.GameObjects.PathFollower,
         
         initialize:
-        function Enemy(scene, enemyType) {
-            
+        function Enemy(scene) {
+            Phaser.GameObjects.PathFollower.call(this, scene);
+            this.setScrollFactor(0);
+        },
+
+        update:
+        function (time, delta) {
+            // When it reaches the end of the path, make inactive
+            if(this.pathTween.totalProgress > 0.98){
+                this.setVisible(false);
+                this.setActive(false);
+            }
+        },
+
+        addScore:
+        function (score) {
+            this.scene.score += score;
+        },
+
+        playBang:
+        function(){
+            this.scene.bangSound.play();
         }
     });
 
     createOccluder(){
         this.lightMaskGraphics = new Phaser.GameObjects.Graphics(this);
         this.blankScreen = this.add.image(screenWidth / 2, screenHeight / 2, 'blankScreen');
-        this.blankScreen.alpha = 1.0;
+        this.blankScreen.alpha = 0.0;
 
         this.blankScreen.setScrollFactor(0);
         this.blankScreen.setDepth(occluderDepth);
@@ -161,10 +292,58 @@ class MainGameScene extends Phaser.Scene
         this.blankScreen.mask.invertAlpha = true;
     }
 
+    addEnemyToPath(path, isTopPath, enemyType){
+        var enemy = this.enemyGroup.get();
+
+        // In case enemy cannot be gotten
+        if(!enemy){
+            return;
+        }
+
+        enemy.path = path;
+
+        if(enemyType == 'bat'){
+            enemy.setTexture('bat');
+            enemy.anims.play('batFly');
+        }
+        else if(enemyType == 'spider'){
+            enemy.setTexture('spider');
+            enemy.anims.play('spiderWalk');
+        }
+        
+        var rotation;
+        if(isTopPath){
+            rotation = 270;
+        }
+        else{
+            rotation = 90;
+        }
+
+        enemy.startFollow({
+            positionOnPath: true,
+            duration: pathDuration,
+            repeat: 0,
+            rotateToPath: true,
+            rotationOffset: rotation,
+            verticalAdjust: true
+        }, 0);
+
+        enemy.setVisible(true);
+        enemy.setActive(true);
+    }
+
+    createEnemies(){
+        this.enemyGroup = this.physics.add.group({classType: this.Enemy, runChildUpdate: true});
+
+        // Init one enemy to keep the collider working
+        const initEnemy = this.enemyGroup.get().setActive(false).setVisible(false);
+        //this.addEnemyToPath(this.paths['topToBottomWaves'][3], true, 'spider');
+    }
+
     createBackground(){
         var mapData = [];
         this.initMapData(mapData);
-        this.map = this.make.tilemap({ data: mapData, tileWidth: this.tileWidth, tileHeight: this.tileHeight });
+        this.map = this.make.tilemap({ data: mapData, tileWidth: tileWidth, tileHeight: tileHeight });
         var tileset = this.map.addTilesetImage('tiles');
         var layer = this.map.createLayer(0, tileset, 0, 0);
     }
@@ -174,6 +353,27 @@ class MainGameScene extends Phaser.Scene
         this.reticle.setScrollFactor(0);
         this.reticle.setDepth(UIDepth);
         this.text = this.add.bitmapText(16, 8, 'nokia16').setScrollFactor(0);
+
+        this.hearts.push(this.physics.add.sprite(20, 40, 'heart'));
+        this.hearts[0].setScrollFactor(0);
+        this.hearts[0].setDepth(UIDepth);
+
+        this.hearts.push(this.physics.add.sprite(50, 40, 'heart'));
+        this.hearts[1].setScrollFactor(0);
+        this.hearts[1].setDepth(UIDepth);
+
+        this.hearts.push(this.physics.add.sprite(80, 40, 'heart'));
+        this.hearts[2].setScrollFactor(0);
+        this.hearts[2].setDepth(UIDepth);
+        
+        this.hearts.push(this.physics.add.sprite(110, 40, 'heart'));
+        this.hearts[3].setScrollFactor(0);
+        this.hearts[3].setDepth(UIDepth);
+
+        this.hearts.push(this.physics.add.sprite(140, 40, 'heart'));
+        this.hearts[4].setScrollFactor(0);
+        this.hearts[4].setDepth(UIDepth);
+
         this.text.setDepth(UIDepth);
     }
 
@@ -181,8 +381,15 @@ class MainGameScene extends Phaser.Scene
         this.canAttack = true;
         this.wizard = this.physics.add.sprite(416, 300, 'wizard');
         this.wizard.setScrollFactor(0);
+        this.wizard.health = 5;
+        this.wizard.isHurt = false;
 
-        this.playerMissiles = this.physics.add.group({classType: this.Missile, runChildUpdate: true});
+        this.playerMissiles = this.physics.add.group({classType: this.Missile, runChildUpdate: true, maxSize: 5});
+
+        // Init one missile to keep the collider working
+        var missile = this.playerMissiles.get().setActive(false).setVisible(false);
+        missile.x = -100;
+        missile.y = -100;
     }
 
     createMouseLogic(){
@@ -190,18 +397,14 @@ class MainGameScene extends Phaser.Scene
         this.input.on('pointerdown', function f(pointer, time, lastFired) {
             if (!this.scene.game.input.mouse.locked) {
                 this.scene.game.input.mouse.requestPointerLock();
+                return;
             }
-            if (this.scene.canAttack === true) {
-                this.scene.wizard.anims.play('wizardAttack', true);
-            }
-
-            console.log(time);
-            console.log(lastFired);
-
-            var missile = this.scene.playerMissiles.get().setActive(true).setVisible(true);
-            this.scene.addToLightMaskObject(missile, 'mid');
-
+            
+            var missile = this.scene.playerMissiles.get();
+            
             if(missile){
+                this.scene.addToLightMaskObject(missile, 'mid')
+                missile.setActive(true).setVisible(true);
                 missile.fire(this.scene.wizard, this.scene.reticle);
             }
 
@@ -278,6 +481,108 @@ class MainGameScene extends Phaser.Scene
             frameRate: 10,
             repeat: -1
         });
+        this.anims.create({
+            key: 'heartDie',
+            frames: this.anims.generateFrameNames('heart', {start: 0, end: 1}),
+            frameRate: 10,
+            repeat: 15
+        })
+    }
+
+    createPaths(){
+        // These paths are templates. They should not be changed during normal gameplay
+
+        this.paths['topToBottomWaves'] = [];
+        this.paths['bottomToTopWaves'] = [];
+
+        for(var x = -3; x <= 3; x += 1){
+            this.paths['topToBottomWaves'].push(new Phaser.Curves.Path(screenWidth / 2, -100)
+                .splineTo(this.generateTopToBottomPath(screenWidth / 2 + (tileWidth * x), 10, -100, screenHeight + 100, 50)));
+            this.paths['bottomToTopWaves'].push(new Phaser.Curves.Path(screenWidth / 2, screenHeight + 100)
+                .splineTo(this.generateBottomToTopPath(screenWidth / 2 + (tileWidth * x), 10, screenHeight + 100, -100, 50)));
+        }
+
+        var graphics = this.add.graphics();
+        graphics.lineStyle(1, 0xffffff, 1);
+
+        if (_DEBUG){
+            for(let path in this.paths){
+                for(var index = 0; index < this.paths[path].length; index += 1){
+                    this.paths[path][index].draw(graphics, 128).setScrollFactor(0);
+                }
+            }
+        }
+    }
+
+    generateTopToBottomPath(startX, deltaX, startY, endY, deltaY){
+        var spline = [];
+        var goLeft = true;
+        for (var i = startY + deltaY; i <= endY - deltaY; i += deltaY) {
+            if(goLeft){
+                spline.push(startX - deltaX);
+                goLeft = false;
+            }
+            else{
+                spline.push(startX + deltaX);
+                goLeft = true;
+            }
+            spline.push(i);
+        }
+        spline.push(startX);
+        spline.push(endY);
+
+        return spline;
+    }
+
+    generateBottomToTopPath(startX, deltaX, startY, endY, deltaY) {
+        var spline = [];
+        var goLeft = true;
+        for (var i = startY - deltaY; i >= endY + deltaY; i -= deltaY) {
+            if (goLeft) {
+                spline.push(startX - deltaX);
+                goLeft = false;
+            }
+            else {
+                spline.push(startX + deltaX);
+                goLeft = true;
+            }
+            spline.push(i);
+        }
+        spline.push(startX);
+        spline.push(endY);
+
+        return spline;
+    }
+
+    handleEnemyGeneration(){
+        if(this.depth in this.enemyJson){
+            var enemyDataList = this.enemyJson[this.depth];
+            for(var i = 0; i < enemyDataList.length; i += 1){
+                var enemyData = enemyDataList[i];
+                this.addEnemyToPath(
+                    this.paths[enemyData.path][enemyData.pathNum],
+                    enemyData.flip,
+                    enemyData.type
+                );
+            }
+        }
+    }
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    constrainReticle() {
+        // Ensures reticle cannot be moved offscreen (player follow)
+        if (this.reticle.x > screenWidth)
+            this.reticle.x = screenWidth;
+        else if (this.reticle.x < 0)
+            this.reticle.x = 0;
+
+        if (this.reticle.y > screenHeight)
+            this.reticle.y = screenHeight;
+        else if (this.reticle.y < 0)
+            this.reticle.y = 0;
     }
 
     addToLightMaskObject(obj, size){
@@ -317,6 +622,34 @@ class MainGameScene extends Phaser.Scene
         //this.drawSmallLightAtPoint(this.lightMaskGraphics, 200, 200);
         this.lightMaskGraphics.generateTexture("geomask");
         this.maskScreen.setTexture('geomask');
+    }
+
+    enemyHitCallback(enemyHit, missileHit) {
+        enemyHit.body.debugBodyColor = 0x00FF00;
+        missileHit.body.debugBodyColor = 0x00FF00;
+
+        // Reduce health of enemy
+        if (missileHit.active === true && enemyHit.active === true) {
+            enemyHit.addScore(100);
+            enemyHit.playBang();
+            enemyHit.setActive(false).setVisible(false);
+
+            // Destroy bullet
+            missileHit.setActive(false).setVisible(false);
+        }
+    }
+
+    playerHitCallback(playerHit, enemyHit) {
+
+        playerHit.body.debugBodyColor = 0xFF0000;
+        enemyHit.body.debugBodyColor = 0xFF0000;
+
+        // Reduce health of player
+        if (enemyHit.active === true && playerHit.active === true && playerHit.isHurt === false) {
+            playerHit.health = playerHit.health - 1;
+            playerHit.isHurt = true;
+            // Todo: if enemy is a projectile, destroy the projectile
+        }
     }
 
     drawSmallLightAtPoint(g, x, y){
@@ -389,27 +722,33 @@ class MainGameScene extends Phaser.Scene
     handleKeyInputs()
     {
         if (this.downKey.isDown){
-            this.clickContext.canAttack = false;
+            this.canAttack = false;
             // If wizard is not transitioning or fast falling, play transition animation
             if (this.wizard.anims.getName() !== 'wizardFastTransition' && this.wizard.anims.getName() !== 'wizardFast'){
                 this.wizard.anims.play('wizardFastTransition', true);
             }
             else{
                 this.wizard.playAfterRepeat('wizardFast');
-                if (this.wizard.anims.getName() == 'wizardFast'){
+                if (this.wizard.anims.getName() == 'wizardFast' || this.wizard.anims.getName() == 'wizardAttack'){
+                    if (this.wizard.y < screenHeight - tileHeight * 2) {
+                        this.wizard.y += 3;
+                    }
                     this.fallSpeed = 8;
                 }
             }
         }
         else if (this.upKey.isDown) {
-            this.clickContext.canAttack = false;
+            this.canAttack = false;
             // If wizard is not transitioning or slow falling, play transition animation
             if (this.wizard.anims.getName() !== 'wizardSlowTransition' && this.wizard.anims.getName() !== 'wizardSlow') {
                 this.wizard.anims.play('wizardSlowTransition', true);
             }
             else {
                 this.wizard.playAfterRepeat('wizardSlow');
-                if (this.wizard.anims.getName() == 'wizardSlow') {
+                if (this.wizard.anims.getName() == 'wizardSlow' || this.wizard.anims.getName() == 'wizardAttack') {
+                    if(this.wizard.y > 0 + tileHeight * 2){
+                        this.wizard.y -= 2;
+                    }
                     this.fallSpeed = 2;
                 }
             }
@@ -423,8 +762,18 @@ class MainGameScene extends Phaser.Scene
             }
             this.wizard.playAfterRepeat('wizardFall', true);
             if (this.wizard.anims.getName() == 'wizardFall'){
-                this.clickContext.canAttack = true;
+                this.canAttack = true;
                 this.fallSpeed = 4;
+            }
+        }
+        if (this.rightKey.isDown) {
+            if(this.wizard.x < screenWidth/2 + (3 * tileWidth)){
+                this.wizard.x += 2;
+            }
+        }
+        else if (this.leftKey.isDown) {
+            if (this.wizard.x > screenWidth / 2 - (3 * tileWidth)) {
+                this.wizard.x -= 2;
             }
         }
     }
@@ -435,35 +784,20 @@ class MainGameScene extends Phaser.Scene
         if(this.depth > 1005){
             return;
         }
-        if(this.depth > 95 && this.depth <= 105){
-            this.blankScreen.alpha += 0.01;
+        if(this.depth > 45 && this.depth <= 55){
+            this.blankScreen.alpha += 0.02;
+        }
+        if (this.depth > 95 && this.depth <= 105) {
+            this.blankScreen.alpha += 0.02;
+        }
+        if (this.depth > 145 && this.depth <= 155) {
+            this.blankScreen.alpha += 0.02;
         }
         if (this.depth > 195 && this.depth <= 205) {
-            this.blankScreen.alpha += 0.01;
+            this.blankScreen.alpha += 0.02;
         }
-        if (this.depth > 295 && this.depth <= 305) {
-            this.blankScreen.alpha += 0.01;
-        }
-        if (this.depth > 395 && this.depth <= 405) {
-            this.blankScreen.alpha += 0.01;
-        }
-        if (this.depth > 495 && this.depth <= 505) {
-            this.blankScreen.alpha += 0.01;
-        }
-        if (this.depth > 595 && this.depth <= 605) {
-            this.blankScreen.alpha += 0.01;
-        }
-        if (this.depth > 695 && this.depth <= 705) {
-            this.blankScreen.alpha += 0.01;
-        }
-        if (this.depth > 795 && this.depth <= 805) {
-            this.blankScreen.alpha += 0.01;
-        }
-        if (this.depth > 895 && this.depth <= 905) {
-            this.blankScreen.alpha += 0.01;
-        }
-        if (this.depth > 995 && this.depth <= 1005) {
-            this.blankScreen.alpha += 0.01;
+        if (this.depth > 245 && this.depth <= 255) {
+            this.blankScreen.alpha += 0.02;
         }
     }
 
@@ -474,7 +808,7 @@ class MainGameScene extends Phaser.Scene
         this.text.setText("Score: " + Math.floor(this.score));
 
         // Every tileHeight, delete the tile from the top of the screen and generate a new one at the bottom
-        if (this.sy >= this.tileHeight) {
+        if (this.sy >= tileHeight) {
             var tile;
             var prev;
 
@@ -496,6 +830,7 @@ class MainGameScene extends Phaser.Scene
 
             this.depth += 1;
 
+            this.handleEnemyGeneration();
             this.handleOpacity();
 
             this.sy = 0;
@@ -520,6 +855,33 @@ class MainGameScene extends Phaser.Scene
         return 0;
     }
 
+    handleOnHurt(t){
+        if(this.wizard.isHurt){
+            if(this.wizard.health < 1){
+                this.scene.start('GameOverScene', {'score': this.score});
+            }
+            this.wizard.setTint(0xFF0000);
+            if (t < this.endIFrames){
+                return;
+            }
+            else if (this.endIFrames - t > -20 && this.endIFrames - t < 20){
+                this.wizard.setTint(0xFFFFFF);
+                this.wizard.isHurt = false;
+            }
+            else{
+                this.hurtSound.play();
+                this.hearts[this.wizard.health].play('heartDie', true);
+                this.endIFrames = t + this.invincibleDuration;
+            }
+        }
+    }
+
+    handleWin(){
+        if(this.depth > 1300){
+            this.scene.start('VictoryScene', { 'score': this.score });
+        }
+    }
+
 }
 
 const config = {
@@ -531,10 +893,12 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false
+            debug: false,
+            debugShowBody: true,
+            debugShowStaticBody: true
         }
     },
-    scene: [MainGameScene]
+    scene: [MainGameScene, GameOverScene, VictoryScene]
 };
 
 const game = new Phaser.Game(config);
